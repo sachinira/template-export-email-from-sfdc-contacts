@@ -2,13 +2,16 @@
 Scheduled export of email addresses belonging to a specific Account, Industry or Georaphy for a specific Marketing Campaign to a CSV<br>
 
 ## Use this template to
-- 
+- Export a CSV file which contains the emails of email Addresses belonging to a Marketing Campaign in Salesforce.
 
 ## What you need
-- 
+- A Salesforce Account.
 
 ## How to set up
-- 
+- Import the template.
+- Allow access to Salesforce Account.
+- Setup the time to trigger the template.
+- Run the template.
 
 # Developer Guide
 <p align="center">
@@ -57,18 +60,18 @@ Scheduled export of email addresses belonging to a specific Account, Industry or
 3. Provide the client ID and client secret to obtain the refresh token and access token. For more information on 
 obtaining OAuth2 credentials, go to [Salesforce documentation](https://help.salesforce.com/articleView?id=remoteaccess_authenticate_overview.htm).
 4. Include them inside the `Config.toml` file.
-
-## Template Configuration
-1. 
-2. 
+5. Obtain the Campaign ID for a Salesforce Campaign in Marketing > Campaigns tab as shown below.
+    <p>
+    <img src="./docs/images/salesforce_campaign_id.png?raw=true" alt="SFDC Campaign ID"/>
+    </p>
 
 ## Config.toml 
 ```
 [<ORG_NAME>.template_sfdc_marketing_campaign_emails_to_csv]
 port = <PORT>
 sfdc_baseUrl = "<SFDC_BASE_URL>"
-campaignId = "<>"
-filePath = "<>"
+campaignId = "<SALESFORCE_CAMPAIGN_ID>"
+filePath = "<CSV_FILEPATH>"
 
 [<ORG_NAME>.template_sfdc_marketing_campaign_emails_to_csv.sfdcOauthConfig]
 clientId = "<CLIENT_ID>"
@@ -85,10 +88,9 @@ refreshToken = "<REFRESH_TOKEN>"
 2. Then you can run the integration binary with the following command. 
 `$ target/bin/template_sfdc_marketing_campaign_emails_to_csv-0.1.0.jar`. 
 
-Successful listener startup will print following in the console.
-```
-[ballerina/http] started HTTP/WS listener 0.0.0.0:8080
-```
-3. 
+    Successful listener startup will print following in the console.
+    ```
+    [ballerina/http] started HTTP/WS listener 0.0.0.0:8080
+    ```
+3. Now you can add a new Contact to the Msrketing Campaign and observe if integration template will update the CSV file on the scheduled time.
 
-4. 

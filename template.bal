@@ -8,10 +8,11 @@ configurable http:OAuth2DirectTokenConfig & readonly sfdcOauthConfig = ?;
 configurable string & readonly sfdc_baseUrl = ?;
 configurable string & readonly campaignId = ?;
 
-configurable string & readonly accountId = ?;
-configurable string & readonly accountIndustry = ?;
-configurable string & readonly billingLatitude = ?;
-configurable string & readonly billingLongitude = ?;
+// Variables for differentiating the results
+// configurable string & readonly accountId = ?;
+// configurable string & readonly accountIndustry = ?;
+// configurable string & readonly billingLatitude = ?;
+// configurable string & readonly billingLongitude = ?;
 
 configurable int & readonly port = ?;
 configurable string & readonly filePath = ?;
