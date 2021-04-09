@@ -75,18 +75,16 @@ service on timer {
                 emailList.push([emailAddress]);
             } 
             string fileName = string `File-${time:currentTime().time.toString()}.csv`;
-            io:println(fileName);
-            // if (emailList.length() >= 1) {
-            //     var putBlobResult = blobClient->putBlob(containerName, fileName, "BlockBlob", 
-            //         emailList.toString().toBytes());
-            //     if (putBlobResult is error) {
-            //         log:printError(putBlobResult.toString());
-            //     } else {
-            //         log:print(putBlobResult.toString());
-            //         log:print(fileName + " added uploaded successfully");
-            //     }
-            // }
-   
+            if (emailList.length() >= 1) {
+                var putBlobResult = blobClient->putBlob(containerName, fileName, "BlockBlob", 
+                    emailList.toString().toBytes());
+                if (putBlobResult is error) {
+                    log:printError(putBlobResult.toString());
+                } else {
+                    log:print(putBlobResult.toString());
+                    log:print(fileName + " added uploaded successfully");
+                }
+            }
         } else {
             log:printError(msg = result.message());
         }    
