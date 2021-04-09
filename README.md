@@ -1,15 +1,17 @@
 # Template: Export a list of email addresses belonging to contacts of a specific Account, Industry or Geography for a Marketing Campaign
-Scheduled export of email addresses belonging to a specific Account, Industry or Georaphy for a specific Marketing Campaign to a CSV<br>
+Scheduled export of email addresses belonging to a specific Account, Industry or Georaphy for a specific Marketing Campaign to a CSV and store it in Azure Blob storage<br>
 
 ## Use this template to
-- Export a CSV file which contains the emails of email Addresses belonging to a Marketing Campaign in Salesforce.
+- Export a CSV file which contains the emails of email Addresses belonging to a Marketing Campaign in Salesforce and save it to Azure Blob storage.
 
 ## What you need
 - A Salesforce Account.
+- An Azure Stirage Account.
 
 ## How to set up
 - Import the template.
 - Allow access to Salesforce Account.
+- Allow access to Azure Storage Account.
 - Setup the time to trigger the template.
 - Run the template.
 
@@ -30,6 +32,12 @@ Scheduled export of email addresses belonging to a specific Account, Industry or
    <td>Java Development Kit (JDK) 
    </td>
    <td>11
+   </td>
+  </tr>
+  <tr>
+   <td>Salesforce API 
+   </td>
+   <td>v48.0
    </td>
   </tr>
   <tr>
@@ -65,13 +73,21 @@ obtaining OAuth2 credentials, go to [Salesforce documentation](https://help.sale
     <img src="./docs/images/salesforce_campaign_id.png?raw=true" alt="SFDC Campaign ID"/>
     </p>
 
+### Configuration of Azure Storage account
+1. 
+
 ## Config.toml 
 ```
 [<ORG_NAME>.template_sfdc_marketing_campaign_emails_to_csv]
-port = <PORT>
 sfdc_baseUrl = "<SFDC_BASE_URL>"
-campaignId = "<SALESFORCE_CAMPAIGN_ID>"
-filePath = "<CSV_FILEPATH>"
+salesforceAccountName = "<>"
+accountIndustry = "<>"
+billingLatitude = <>
+billingLongitude = <>
+accessKeyOrSAS = "<>"
+accountName = "<>"
+containerName = "<>"
+intervalInMillis = <>
 
 [<ORG_NAME>.template_sfdc_marketing_campaign_emails_to_csv.sfdcOauthConfig]
 clientId = "<CLIENT_ID>"
@@ -88,9 +104,5 @@ refreshToken = "<REFRESH_TOKEN>"
 2. Then you can run the integration binary with the following command. 
 `$ target/bin/template_sfdc_marketing_campaign_emails_to_csv-0.1.0.jar`. 
 
-    Successful listener startup will print following in the console.
-    ```
-    [ballerina/http] started HTTP/WS listener 0.0.0.0:8080
-    ```
-3. Now you can add a new Contact to the Msrketing Campaign and observe if integration template will update the CSV file on the scheduled time.
+3. Now you can add a new Contact to the Msrketing Campaign and observe if integration template will add a  new CSV file on the scheduled time.
 
