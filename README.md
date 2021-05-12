@@ -6,7 +6,7 @@ Scheduled export of email addresses belonging to a specific Account, Industry or
 
 ## What you need
 - A Salesforce Account.
-- An Azure Stirage Account.
+- An Azure Storage Account.
 
 ## How to set up
 - Import the template.
@@ -74,26 +74,30 @@ obtaining OAuth2 credentials, go to [Salesforce documentation](https://help.sale
     </p>
 
 ### Configuration of Azure Storage account
-1. 
+
+1. Copy one of the Access Keys from the Azure Portal and add it to Config.toml file as accessKeyOrSAS.
+2. Add azure storage account name to Config.toml file as accountName.
+3. Create a container and add the name of the container to Config.toml file as containerName.
+
 
 ## Config.toml 
 ```
 [<ORG_NAME>.template_sfdc_marketing_campaign_emails_to_csv]
 sfdc_baseUrl = "<SFDC_BASE_URL>"
-salesforceAccountName = "<>"
-accountIndustry = "<>"
-billingLatitude = <>
-billingLongitude = <>
-accessKeyOrSAS = "<>"
-accountName = "<>"
-containerName = "<>"
-intervalInMillis = <>
+salesforceAccountName = "<SFDC_ACCOUNT_NAME>"
+accountIndustry = "<INDUSTRY>"
+billingCity = <BILLIING_CITY>
+accessKeyOrSAS = "<BLOB_ACCOUNT_SAS_KEY>"
+accountName = "<BLOB_ACCOUNT_NAME>"
+containerName = "<BLOB_CONTAINER_NAME>"
+authorizationMethod = "<BLOB_AUTHORIZATION_METHOD>"
+intervalInMillis = <SCHEDULAR_INTERVAL>
 
 [<ORG_NAME>.template_sfdc_marketing_campaign_emails_to_csv.sfdcOauthConfig]
-clientId = "<CLIENT_ID>"
-clientSecret = "<CLIENT_SECRET>"
-refreshUrl = "<SALESFORCE_REFRESH_URL>"
-refreshToken = "<REFRESH_TOKEN>"
+clientId = "<SFDC_CLIENT_ID>"
+clientSecret = "<SFDC_CCLIENT_SECRET>"
+refreshUrl = "<SFDC_C_REFRESH_URL>"
+refreshToken = "<SFDC_CREFRESH_TOKEN>"
 ```
 
 ## Running the template

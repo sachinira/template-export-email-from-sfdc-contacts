@@ -1,10 +1,9 @@
 import ballerina/http;
 import ballerina/log;
-import ballerinax/sfdc;
 import ballerina/task;
 import ballerina/time;
 import lakshans/azure_storage_service.blobs as azure_blobs;
-import ballerina/io;
+import ballerinax/sfdc;
 
 // Salesforce client configuration
 configurable http:OAuth2DirectTokenConfig & readonly sfdcOauthConfig = ?;
@@ -29,7 +28,7 @@ sfdc:SalesforceConfiguration sfClientConfiguration = {
     baseUrl: sfdc_baseUrl,
     clientConfig: sfdcOauthConfig
 };
-sfdc:BaseClient baseClient = checkpanic new (sfClientConfiguration);
+sfdc:Client baseClient = checkpanic new (sfClientConfiguration);
 
 // Azure Blob Client Initialization
 azure_blobs:AzureBlobServiceConfiguration blobServiceConfig = {
@@ -41,7 +40,7 @@ azure_blobs:BlobClient blobClient = check new (blobServiceConfig);
 
 // Schedular configuration
 task:TimerConfiguration timerConfiguration = {
-    intervalInMillis: 1000,
+    intervalInMillis: intervalInMillis,
     initialDelayInMillis: 0
 };
 
@@ -81,7 +80,6 @@ service on timer {
                 if (putBlobResult is error) {
                     log:printError(putBlobResult.toString());
                 } else {
-                    log:print(putBlobResult.toString());
                     log:print(fileName + " added uploaded successfully");
                 }
             }
